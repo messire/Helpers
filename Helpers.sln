@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31129.286
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Awaiter", "Awaiter\Awaiter.csproj", "{CBE3DA8A-BCA1-43F0-B726-6955815D3A1C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Helpers.Awaiter", "Awaiter\Helpers.Awaiter.csproj", "{CBE3DA8A-BCA1-43F0-B726-6955815D3A1C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Side", "Side\Side.csproj", "{9FA01C6C-A0EB-421D-9BF6-A6C8310E5503}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Helpers.Side", "Side\Helpers.Side.csproj", "{9FA01C6C-A0EB-421D-9BF6-A6C8310E5503}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

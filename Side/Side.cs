@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Side
 {
@@ -10,36 +6,18 @@ namespace Side
     public struct Side : IComparable, IComparable<bool>, IEquatable<bool>
     {
         private bool value;
-        internal const bool Right = true;
-        internal const bool Left = false;
         private const string RightLiteral = "Right";
         private const string LeftLiteral = "Left";
 
-        public override int GetHashCode()
-        {
-            return !this ? 0 : 1;
-        }
+        public override int GetHashCode() => !this ? 0 : 1;
+        
+        public override string ToString() => !this ? LeftLiteral : RightLiteral;
 
-        public override string ToString()
-        {
-            return !this ? LeftLiteral : RightLiteral;
-        }
+        public string ToString(IFormatProvider provider) => !this ? LeftLiteral : RightLiteral;
 
-        public string ToString(IFormatProvider provider)
-        {
-            return !this ? LeftLiteral : RightLiteral;
-        }
-
-        public override bool Equals(object obj)
-        {
-            if (!(obj is bool)) return false;
-            return this == (bool)obj;
-        }
-
-        public bool Equals(bool obj)
-        {
-            return this == obj;
-        }
+        public override bool Equals(object obj) => obj is bool result && this == result;
+        
+        public bool Equals(bool obj) => this == obj;
 
         public int CompareTo(object obj)
         {
@@ -58,8 +36,7 @@ namespace Side
         public static Side Parse(string value)
         {
             if (value == null) throw new ArgumentNullException(nameof(value));
-            bool result = false;
-            if (!bool.TryParse(value, out result)) throw new FormatException("Format_BadBoolean");
+            if (!bool.TryParse(value, out bool result)) throw new FormatException("Format_BadBoolean");
             return result;
         }
 
@@ -96,20 +73,24 @@ namespace Side
             int startIndex = 0;
             int index = value.Length - 1;
             char minValue = char.MinValue;
-            while (startIndex < value.Length && (char.IsWhiteSpace(value[startIndex]) || (int)value[startIndex] == (int)minValue)) ++startIndex;
-            while (index >= startIndex && (char.IsWhiteSpace(value[index]) || (int)value[index] == (int)minValue)) --index;
+            while (startIndex < value.Length && (char.IsWhiteSpace(value[startIndex]) || value[startIndex] == minValue))
+            {
+                ++startIndex;
+            }
+
+            while (index >= startIndex && (char.IsWhiteSpace(value[index]) || (int) value[index] == (int) minValue))
+            {
+                --index;
+            }
+
             return value.Substring(startIndex, index - startIndex + 1);
         }
 
-        public TypeCode GetTypeCode()
-        {
-            return TypeCode.Boolean;
-        }
+        public TypeCode GetTypeCode() => TypeCode.Boolean;
 
         public static implicit operator bool(Side status) => status.value;
         public static implicit operator Side(bool status) => new Side { value = status };
         public static Side operator !(Side status) => !status.value;
         public static Side operator ++(Side status) => !status.value;
-
     }
 }

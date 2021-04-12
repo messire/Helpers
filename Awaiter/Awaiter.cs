@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace Awaiter
+namespace Helpers
 {
     public class Awaiter
     {

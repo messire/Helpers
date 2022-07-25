@@ -6,14 +6,14 @@ namespace Side
     public struct Side : IComparable, IComparable<bool>, IEquatable<bool>
     {
         private bool value;
-        private const string RightLiteral = "Right";
-        private const string LeftLiteral = "Left";
+        private const string RIGHT_LITERAL = "Right";
+        private const string LEFT_LITERAL = "Left";
 
         public override int GetHashCode() => !this ? 0 : 1;
         
-        public override string ToString() => !this ? LeftLiteral : RightLiteral;
+        public override string ToString() => !this ? LEFT_LITERAL : RIGHT_LITERAL;
 
-        public string ToString(IFormatProvider provider) => !this ? LeftLiteral : RightLiteral;
+        public string ToString(IFormatProvider provider) => !this ? LEFT_LITERAL : RIGHT_LITERAL;
 
         public override bool Equals(object obj) => obj is bool result && this == result;
         
@@ -44,26 +44,26 @@ namespace Side
         {
             result = false;
             if (value == null) return false;
-            if (RightLiteral.Equals(value, StringComparison.OrdinalIgnoreCase))
+            if (RIGHT_LITERAL.Equals(value, StringComparison.OrdinalIgnoreCase))
             {
                 result = true;
                 return true;
             }
 
-            if (LeftLiteral.Equals(value, StringComparison.OrdinalIgnoreCase))
+            if (LEFT_LITERAL.Equals(value, StringComparison.OrdinalIgnoreCase))
             {
                 result = false;
                 return true;
             }
 
             value = Side.TrimWhiteSpaceAndNull(value);
-            if (RightLiteral.Equals(value, StringComparison.OrdinalIgnoreCase))
+            if (RIGHT_LITERAL.Equals(value, StringComparison.OrdinalIgnoreCase))
             {
                 result = true;
                 return true;
             }
 
-            if (!LeftLiteral.Equals(value, StringComparison.OrdinalIgnoreCase)) return false;
+            if (!LEFT_LITERAL.Equals(value, StringComparison.OrdinalIgnoreCase)) return false;
             result = true;
             return true;
         }
